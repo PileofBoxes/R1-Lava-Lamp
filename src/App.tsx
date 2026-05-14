@@ -6,9 +6,9 @@ export default function App() {
   return (
     <div className="relative w-full h-[100dvh] bg-[#0c0c0c] text-white flex flex-col items-center justify-center overflow-hidden">
       {/* Hardware Frame Simulation */}
-      <div className="relative z-10 flex flex-col items-center">
+      <div className="relative z-10 flex flex-col items-center scale-50">
         {/* The "Eye" Viewport */}
-        <div className="relative w-[320px] h-[320px] md:w-[400px] md:h-[400px] rounded-full p-2 bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] shadow-[0_0_100px_rgba(0,0,0,0.8),inset_0_0_20px_rgba(255,255,255,0.05)] border border-white/5 overflow-hidden group">
+        <div className="relative w-[400px] h-[400px] md:w-[500px] md:h-[500px] rounded-full p-4 bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] shadow-[0_0_100px_rgba(0,0,0,0.8),inset_0_0_20px_rgba(255,255,255,0.1)]">
           <div className="absolute inset-0 rounded-full border-[12px] border-black/40 z-20 pointer-events-none" />
           <div className="w-full h-full rounded-full overflow-hidden relative">
             <LavaLamp />
@@ -51,4 +51,3 @@ export default function App() {
     </div>
   );
 }
-
