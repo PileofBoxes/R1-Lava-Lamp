@@ -1,0 +1,6 @@
+{
+  "name": "Lava Lamp R1",
+  "description": "An organic, atmospheric lava lamp simulation for your Rabbit R1. Includes a scannable QR code for easy device installation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
