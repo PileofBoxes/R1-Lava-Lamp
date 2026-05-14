@@ -15,18 +15,18 @@ const COLORS = [
 const Blob = ({ colorOverride }: { colorOverride?: string }) => {
   const baseColor = useMemo(() => COLORS[Math.floor(Math.random() * COLORS.length)], []);
   const color = colorOverride || baseColor;
-  const duration = useMemo(() => 8 + Math.random() * 12, []); 
-  const size = useMemo(() => 40 + Math.random() * 100, []);
+  const duration = useMemo(() => 10 + Math.random() * 14, []); 
+  const size = useMemo(() => 50 + Math.random() * 80, []);
   const delay = useMemo(() => Math.random() * -duration, []); 
-  const xCenter = useMemo(() => Math.random() * 80 + 10, []); 
-  const xRadius = useMemo(() => 10 + Math.random() * 20, []); 
+  const xCenter = useMemo(() => Math.random() * 60 + 20, []); 
+  const xRadius = useMemo(() => 8 + Math.random() * 15, []); 
 
   return (
     <motion.div
       className="absolute rounded-full mix-blend-screen cursor-pointer pointer-events-auto"
-      initial={{ x: `${xCenter - xRadius}%`, y: '110%', scale: 0.8, opacity: 0.5 }}
+      initial={{ x: `${xCenter - xRadius}%`, y: '120%', scale: 0.8, opacity: 0.5 }}
       animate={{
-        y: ['110%', '-20%', '110%'],
+        y: ['120%', '-30%', '120%'],
         x: [
           `${xCenter - xRadius}%`, 
           `${xCenter}%`, 
@@ -34,17 +34,17 @@ const Blob = ({ colorOverride }: { colorOverride?: string }) => {
           `${xCenter}%`, 
           `${xCenter - xRadius}%`
         ],
-        scale: [0.7, 1.1, 1.4, 1.1, 0.7],
-        opacity: [0.3, 0.7, 0.9, 0.6, 0.3],
+        scale: [0.7, 1.1, 1.3, 1.1, 0.7],
+        opacity: [0.3, 0.6, 0.8, 0.5, 0.3],
       }}
       whileTap={{ 
-        scale: 1.8,
-        y: "-=20%",
-        transition: { type: "spring", stiffness: 400, damping: 10 }
+        scale: 1.6,
+        y: "-=15%",
+        transition: { type: "spring", stiffness: 300, damping: 12 }
       }}
       whileHover={{
-        scale: 1.2,
-        opacity: 1,
+        scale: 1.15,
+        opacity: 0.9,
       }}
       transition={{
         y: {
@@ -54,19 +54,19 @@ const Blob = ({ colorOverride }: { colorOverride?: string }) => {
           delay: delay,
         },
         x: {
-          duration: duration * 0.8,
+          duration: duration * 0.9,
           repeat: Infinity,
           ease: "easeInOut",
           delay: delay,
         },
         scale: {
-          duration: duration * 0.8,
+          duration: duration * 0.9,
           repeat: Infinity,
           ease: "easeInOut",
           delay: delay,
         },
         opacity: {
-          duration: duration * 0.8,
+          duration: duration * 0.9,
           repeat: Infinity,
           ease: "easeInOut",
           delay: delay,
@@ -76,15 +76,15 @@ const Blob = ({ colorOverride }: { colorOverride?: string }) => {
         width: size,
         height: size,
         backgroundColor: color,
-        filter: 'blur(12px)',
-        boxShadow: `0 0 30px ${color}44`,
+        filter: 'blur(10px)',
+        boxShadow: `0 0 25px ${color}44`,
       }}
     />
   );
 };
 
 export const LavaLamp = () => {
-  const [blobCount] = useState(24);
+  const [blobCount] = useState(14);
   const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([]);
   const [colorIndex, setColorIndex] = useState(0);
   const [resetKey, setResetKey] = useState(0);
@@ -134,7 +134,7 @@ export const LavaLamp = () => {
 
   return (
     <div 
-      className="relative w-full h-full bg-[#120805] overflow-hidden cursor-crosshair touch-none"
+      className="relative w-full h-full bg-[#120805] overflow-visible cursor-crosshair touch-none"
       onPointerDown={handlePointerDown}
     >
       {/* Background glow gradient */}
@@ -155,11 +155,11 @@ export const LavaLamp = () => {
       <svg className="hidden">
         <defs>
           <filter id="goo">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
             <feColorMatrix
               in="blur"
               mode="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
               result="goo"
             />
             <feComposite in="SourceGraphic" in2="goo" operator="atop" />
@@ -174,9 +174,9 @@ export const LavaLamp = () => {
       >
         {/* Base pools */}
         <motion.div 
-          className="absolute bottom-[-20px] left-[-10%] w-[120%] h-24 bg-[#ff4e00] blur-2xl opacity-40"
-          animate={{ scaleY: [1, 1.1, 0.95, 1], backgroundColor: COLORS[colorIndex] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[-30px] left-[-15%] w-[130%] h-28 bg-[#ff4e00] blur-2xl opacity-35"
+          animate={{ scaleY: [1, 1.08, 0.97, 1], backgroundColor: COLORS[colorIndex] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
         
         {/* The blobs */}
@@ -197,4 +197,3 @@ export const LavaLamp = () => {
     </div>
   );
 };
-
